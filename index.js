@@ -1,13 +1,13 @@
 const express = require('express');
 const http = require('http');
 
-const hostname = "localhost";
+const hostname = 'localhost';
 const port = 3000;
 
 // app will be using express
 const app = express();
 
-// next is used for middleware, optional param
+// next is used to invoke middleware, optional param
 app.use((req, res, next) => {
     console.log(req.headers);
     res.statusCode = 200;
