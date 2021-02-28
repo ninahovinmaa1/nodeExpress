@@ -1,3 +1,10 @@
+/*In this lesson you will learn about the Express framework that enables implementing and deploying
+powerful web servers based on Node. At the end of this lesson, you will be able to:
+
+Implement a web server using the Express framework
+Develop a web server that supports a REST API
+Use Express router to implement support for the REST API*/
+
 const express = require('express');
 const http = require('http');
 const morgan = require('morgan');
@@ -13,31 +20,13 @@ const app = express();
 app.use(morgan('dev'));
 app.use(bodyParser.json())
 
-/*
-
-app.get('/dishes/:dishId', (req,res,next) => {
-    res.end('Will send details of the dish ' + req.params.dishId + ' to you!');
-});
-
-app.post('/dishes/:dishId', (req, res, next) => {
-    res.statusCode = 403;
-    res.end('POST operation not supported on /dishes/' + req.params.dishId);
-})
-
-app.put('/dishes/:dishId', (req, res, next) => {
-    res.write('Updating the dish: ' + req.params.dishId) + '\n';
-    res.end('Will update the dish: ' + req.body.name + 'with details ' + req.body.description);
-})
-
-app.delete('/dishes/:dishId', (req,res,next) => {
-    res.end('Deleting dish: ' + req.parans.dishId);
-});
-
-*/
-
 //Mounting a router by endpoint. Any req coming to /dishes will be handled by dishRouter
 app.use('/dishes', dishRouter);
 
+//serves the static files from the public folder (__dirname = rootfolder of this app). 
+// Index.html is served on localhost:3000/
+// aboutus.html is served on localhost:3000/aboutus.html
+// none of the files is served on localhost:3000/aboutus.txt (wrong fileformat). Only the regular res.end(<html>.... this is and Express Server....</html>)
 app.use(express.static(__dirname+'/public'))
 
 // next is used to invoke middleware, optional param
